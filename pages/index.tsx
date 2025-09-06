@@ -28,7 +28,7 @@ const Home: NextPage = () => {
   const [selectedEpisode, setSelectedEpisode] = useState<number | null>(null); // Currently selected episode
   const [selectedTitle, setSelectedTitle] = useState<string>('It_s_Okay_to_Not_Be_Okay'); // Currently selected title
   const [showVideo, setShowVideo] = useState(false); // Whether to show the video or not
-  const [message, setMessage] = useState<string>('Hey there! 😊 Welcome to our little world of memories and magic. ✨🎬 Feel free to dive into the nostalgia! 🌟💖'); // Welcome message
+  const [message, setMessage] = useState<string>(''); // Welcome message
   const [currentSeriesTitle, setCurrentSeriesTitle] = useState<string>(''); // Current series title
 
   useEffect(() => {
@@ -40,13 +40,15 @@ const Home: NextPage = () => {
     };
     fetchEpisodes();
 
-    // List of welcome messages to choose from
+    // ******************************************************
+    // AAP APNI PASAND KE MESSAGES YA NAAM YAHAAN DAAL SAKTE HAIN
+    // ******************************************************
     const messages = [
-      "Hey there! 😊 Welcome to our little world of memories and magic. ✨🎬💖",
-      "Hello, cutie! 🌸 Let's make today another beautiful memory together! 🎥✨",
-      "Hi, sweetie! 🌈 Ready to embark on a magical journey down memory lane? 🚀💕",
-      "Hey, sunshine!☀️ let's create some unforgettable moments together! 🌺💫",
-      "Hey, darling! 🌼 Let's dance through time and relive our favorite memories! 💃🎶",
+      "Hi Priya! 💖 Ready for our next adventure?",
+      "Hello Sunshine! ☀️ Let's watch something amazing!",
+      "Hey Cutie! 🌸 Pick a show and let's get lost together.",
+      "For my favorite person in the world! ❤️",
+      "Just for you, Priya! ✨ Enjoy the show!",
     ];
     // Pick a random message from the list
     const randomIndex = Math.floor(Math.random() * messages.length);
@@ -85,14 +87,18 @@ const Home: NextPage = () => {
   return (
     <div className="h-screen w-screen overflow-hidden bg-bg text-white">
       <Head>
-        <title>JuhiFlix</title>
+        <title>PriyaFlix</title> 
+        {/* AAP YAHAN BHI TITLE BADAL SAKTE HAIN */}
         <link rel="icon" href="favicon.ico" />
       </Head>
       <Header className="fixed top-0 w-full z-20" />
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 pt-20 text-center">
+      <main className="flex w-full flex-1 flex-col items-center justify-center px-4 sm:px-20 pt-20 text-center">
         {!showVideo && (
           <div className="mb-10 flex flex-col justify-center space-y-6">
-            <h1 className="text-4xl font-bold md:text-5xl">{message}</h1>
+            {/* ****************************************************** */}
+            {/* YAHAN HUMNE TEXT SIZE KO MOBILE KE LIYE THEEK KIYA HAI */}
+            {/* ****************************************************** */}
+            <h1 className="text-3xl font-bold sm:text-4xl md:text-5xl">{message}</h1>
             <p className="text-center text-xs opacity-75">🌟 Welcome to Our Magical World! 🌟</p>
           </div>
         )}
@@ -101,7 +107,7 @@ const Home: NextPage = () => {
             <h2 className="text-2xl font-bold mb-4">{currentSeriesTitle}</h2>
             <div className="video-container rounded-lg overflow-hidden">
               <video key={episodes[selectedEpisode].video} controls className="w-full h-auto">
-                <source src={episodes[selectedEpisode].video} type="video/mp4" />
+                <source src={episodes[selectedEpisode].video} type="video/mock/mp4" />
                 {episodes[selectedEpisode].subtitle && (
                   <track src={episodes[selectedEpisode].subtitle} kind="subtitles" srcLang="en" label="English" default />
                 )}
@@ -133,7 +139,7 @@ const Home: NextPage = () => {
           transform: translate(-50%, -50%);
           width: 100%;
           max-width: 800px;
-          padding-top: 90px; /* Adjust as needed */
+          padding: 90px 1rem 0 1rem; /* Adjust as needed */
         }
         .video-container {
           width: 100%;
